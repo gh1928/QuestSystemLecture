@@ -4,6 +4,7 @@ using System.Diagnostics;
 using UnityEngine;
 using System.Linq;
 
+
 using Debug = UnityEngine.Debug;
 
 public enum QuestState
@@ -37,11 +38,12 @@ public class Quest : ScriptableObject
     [SerializeField] private TaskGroup[] taskGroups;
 
     [Header("Reward")]
-    private Reward[] rewards;
+    [SerializeField] private Reward[] rewards;
 
     [Header("Option")]
     [SerializeField] private bool useAutoComplete;
     [SerializeField] private bool isCancelable;
+    [SerializeField] private bool isSavable;
 
     [Header("Condition")]
     [SerializeField] private Condition[] acceptionConditions;
@@ -65,8 +67,9 @@ public class Quest : ScriptableObject
     public bool IsComplete => State == QuestState.Complete;
     public bool IsCancel => State == QuestState.Cancel;
 
-    public bool IsCancelable => isCancelable && cancelConditions.All(x => x.IsPass(this));
+    public virtual bool IsCancelable => isCancelable && cancelConditions.All(x => x.IsPass(this));
     public bool IsAcceptable => acceptionConditions.All(x => x.IsPass(this));
+    public virtual bool IsSavable => isSavable;
 
     public event TaskSuccessChangeHandler onTaskSuccessChange;
     public event CompletedHandler onCompleted;
@@ -92,7 +95,7 @@ public class Quest : ScriptableObject
 
     public void ReceiveReport(string category, object target, int successCount)
     {
-        Debug.Assert(!IsRegistered, "This quest already registered");
+        Debug.Assert(IsRegistered, "This quest already registered");
         Debug.Assert(!IsCancel, "This quest has been canceled");
 
         if (IsComplete) return;
@@ -146,7 +149,7 @@ public class Quest : ScriptableObject
         onNewTaskGroup = null;
     }
 
-    public void Cancel()
+    public virtual void Cancel()
     {
         CheckIsRunninig();
         Debug.Assert(IsCancelable, "This quest can't be canceled");
@@ -155,14 +158,52 @@ public class Quest : ScriptableObject
         onCanceld?.Invoke(this);
     }
 
-    private void OnSucessChanged(Task task, int currentSuccess, int prevSuccess) 
-        => onTaskSuccessChange?.Invoke(this, task, currentSuccess, prevSuccess);
+    public Quest Clone()
+    {
+        var clone = Instantiate(this);
+        clone.taskGroups = taskGroups.Select(x => new TaskGroup(x)).ToArray();
+
+        return clone;
+    }
+
+    public QuestSaveData ToSaveData()
+    {
+        return new QuestSaveData
+        {
+            codeName = codeName,
+            state = State,
+            taskGroupIndex = currentTaskGroupIndex,
+            taskSuccessCounts = CurrentTaskGroup.Tasks.Select(x => x.CurrentSuccess).ToArray(),
+        };
+    }
+
+    public void LoadFrom(QuestSaveData saveData)
+    {
+        State = saveData.state;
+        currentTaskGroupIndex = saveData.taskGroupIndex;
+
+        for (int i = 0; i < currentTaskGroupIndex; i++)
+        {
+            var taskGroup = taskGroups[i];
+            taskGroup.Start();
+            taskGroup.Complete();
+        }
+
+        for (int i = 0; i < saveData.taskSuccessCounts.Length; i++)
+        {
+            CurrentTaskGroup.Start();
+            CurrentTaskGroup.Tasks[i].CurrentSuccess = saveData.taskSuccessCounts[i];
+        }
+    }
+
+    private void OnSucessChanged(Task task, int currentSuccess, int prevSuccess)
+    => onTaskSuccessChange?.Invoke(this, task, currentSuccess, prevSuccess);
 
 
     [Conditional("UNITY_EDITOR")]
     private void CheckIsRunninig()
     {
-        Debug.Assert(!IsRegistered, "This quest already registered");
+        Debug.Assert(IsRegistered, "This quest already registered");
         Debug.Assert(!IsCancel, "This quest has been canceled");
         Debug.Assert(!IsComplete, "This quest has already been completed");
     }

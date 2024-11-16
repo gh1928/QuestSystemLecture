@@ -86,7 +86,7 @@ public class Task : ScriptableObject
     {
         State = TaskState.Running;
 
-        if (initialSuccessValue)
+        if (initialSuccessValue is not null)
         {
             CurrentSuccess = initialSuccessValue.GetValue(this);
         }
@@ -100,7 +100,7 @@ public class Task : ScriptableObject
 
     public void ReceiveReport(int successCount)
     {
-        CurrentSuccess += action.Run(this, CurrentSuccess, successCount);
+        CurrentSuccess = action.Run(this, CurrentSuccess, successCount);
     }
 
     public void Complete()
