@@ -71,7 +71,7 @@ public class Quest : ScriptableObject
     public bool IsAcceptable => acceptionConditions.All(x => x.IsPass(this));
     public virtual bool IsSavable => isSavable;
 
-    public event TaskSuccessChangeHandler onTaskSuccessChange;
+    public event TaskSuccessChangeHandler onTaskSuccessChanged;
     public event CompletedHandler onCompleted;
     public event CanceldHandler onCanceld;
     public event NewTaskGroupHandler onNewTaskGroup;
@@ -143,7 +143,7 @@ public class Quest : ScriptableObject
 
         onCompleted?.Invoke(this);
 
-        onTaskSuccessChange = null;
+        onTaskSuccessChanged = null;
         onCompleted = null;
         onCanceld = null;
         onNewTaskGroup = null;
@@ -201,7 +201,7 @@ public class Quest : ScriptableObject
     }
 
     private void OnSucessChanged(Task task, int currentSuccess, int prevSuccess)
-    => onTaskSuccessChange?.Invoke(this, task, currentSuccess, prevSuccess);
+    => onTaskSuccessChanged?.Invoke(this, task, currentSuccess, prevSuccess);
 
 
     [Conditional("UNITY_EDITOR")]

@@ -61,8 +61,8 @@ public class QuestSystem : MonoBehaviour
 
     public IReadOnlyList<Quest> ActiveQuests => activeQuests;
     public IReadOnlyList<Quest> CompletedQuests => completedQuests;
-    public IReadOnlyList<Quest> ActiveAchievement => activeAchievements;
-    public IReadOnlyList<Quest> CompletedAchievement => completedAchievements;
+    public IReadOnlyList<Quest> ActiveAchievements => activeAchievements;
+    public IReadOnlyList<Quest> CompletedAchievements => completedAchievements;
 
     private void Awake()
     {

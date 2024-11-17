@@ -25,7 +25,7 @@ public class QuestSystemTest : MonoBehaviour
         };
 
         var newQuest = questSystem.Register(quest);
-        newQuest.onTaskSuccessChange += (quest, task, currentSuccess, prevSuccess) =>
+        newQuest.onTaskSuccessChanged += (quest, task, currentSuccess, prevSuccess) =>
         {
             print($"Task {task.CodeName} success changed from {prevSuccess} to {currentSuccess}");
         };
