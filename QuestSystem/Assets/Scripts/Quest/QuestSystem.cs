@@ -80,8 +80,7 @@ public class QuestSystem : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        isApplicationQuitting = true;
-        Save();
+        isApplicationQuitting = true;        
     }
 
     public Quest Register(Quest quest)

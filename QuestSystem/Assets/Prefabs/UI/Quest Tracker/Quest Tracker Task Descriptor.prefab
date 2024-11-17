@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8210ac153c5a34fb57b0c19a70f8e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  text: {fileID: 6774673762540671645}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   taskCompletionColor: {r: 0, g: 1, b: 0, a: 1}
   taskSucessCountColor: {r: 1, g: 0, b: 0, a: 1}

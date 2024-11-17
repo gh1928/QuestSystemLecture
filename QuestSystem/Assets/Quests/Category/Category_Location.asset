@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a910c2fca4fd40a48a8a08c98e7267a1, type: 3}
-  m_Name: QuestDatabase
+  m_Script: {fileID: 11500000, guid: 792d2971e6f59134baed2300a4070157, type: 3}
+  m_Name: Category_Location
   m_EditorClassIdentifier: 
-  quests:
-  - {fileID: 11400000, guid: c051256681b5c284ebb1bf44e956662f, type: 2}
+  codeName: LOCATION
+  displayName: Location

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc02571689f21142a21b6f06b8ff308, type: 3}
+  m_Name: Quest_Heal The Patients Body
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 6684959a1dcef9742b854d25f69a2cb2, type: 2}
+  icon: {fileID: 0}
+  codeName: HEAL_THE_PATIENETS_BODY
+  displayName: Heal The Patients Body
+  description: You must have to heal the patient's body
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: ec02413658816ed4fbf2e2f47bcac263, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: af6e0ce5eb03aa5449368012d388b60a, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: 1827160526ad81b4f99cf32d72b806bc, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: b70d66ab87a53de4bb872693586a4a95, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: 3c4aa0a40588609489012346ba999cb3, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: 883ca28277814634da490900494ccf06, type: 2}
+  rewards: []
+  useAutoComplete: 0
+  isCancelable: 0
+  isSavable: 0
+  acceptionConditions: []
+  cancelConditions: []
