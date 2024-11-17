@@ -127,12 +127,23 @@ public class QuestSystem : MonoBehaviour
         }
     }
 
+    public void CompleteWaitingQuests()
+    {
+        foreach(var quest in activeQuests.ToList())
+        {
+            if(quest.IsCompletable)
+            {
+                quest.Complete();
+            }
+        }
+    }
+
     public bool ContainsInActiveQuests(Quest quest) => activeQuests.Any(x => x.CodeName == quest.CodeName);
     public bool ContainsInCompleteQuests(Quest quest) => activeQuests.Any(x => x.CodeName == quest.CodeName);
     public bool ContainsInActiveAchievements(Quest quest) => activeQuests.Any(x => x.CodeName == quest.CodeName);
     public bool ContainsInCompletedAchievements(Quest quest) => activeQuests.Any(x => x.CodeName == quest.CodeName);
 
-    private void Save()
+    public void Save()
     {
         var root = new JObject();
         root.Add(kActiveQuestsSavePath, CreateSaveDatas(activeQuests));
@@ -144,7 +155,7 @@ public class QuestSystem : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private bool Load()
+    public bool Load()
     {
         if(PlayerPrefs.HasKey(kSaveRootPath))
         {

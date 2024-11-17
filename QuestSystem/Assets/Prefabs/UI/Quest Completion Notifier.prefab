@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7844800651715378662}
   - component: {fileID: 1151408009416208048}
   - component: {fileID: 9159413750085172567}
+  - component: {fileID: 7725480719601390526}
   m_Layer: 5
   m_Name: Quest Completion Notifier
   m_TagString: Untagged
@@ -104,6 +105,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7725480719601390526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534555343951921263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: facc38355e4d7a44caa4a95cd7a83c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleDescription: Complete [%{dn}]
+  titleText: {fileID: 5248418282295760707}
+  rewardText: {fileID: 6804524146365319419}
+  showTime: 3
 --- !u!1 &5440858872931368698
 GameObject:
   m_ObjectHideFlags: 0

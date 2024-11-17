@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc02571689f21142a21b6f06b8ff308, type: 3}
+  m_Name: Quest_Shoot
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 5d69488a957298c4fa31766091750389, type: 2}
+  icon: {fileID: 0}
+  codeName: SHOOT
+  displayName: Shoot
+  description: You have to shoot 5
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: f8e0db77b5c05134cb9b1b98c394b27d, type: 2}
+  rewards:
+  - {fileID: 11400000, guid: 89c63a6930a881649a5121848851e68b, type: 2}
+  useAutoComplete: 0
+  isCancelable: 0
+  isSavable: 1
+  acceptionConditions: []
+  cancelConditions: []
